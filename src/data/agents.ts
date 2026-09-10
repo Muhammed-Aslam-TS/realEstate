@@ -5,12 +5,14 @@ export interface Agent {
   phone: string;
   email: string;
   image: string;
+  whatsappNumber: string;
   experienceYears: number;
   activeListings: number;
   totalVolume: string;
   specialization: string;
   bio: string;
   rating: number;
+  localitiesCovered: string[];
   socials: {
     linkedin?: string;
     instagram?: string;
@@ -21,36 +23,39 @@ export interface Agent {
 export const AGENTS: Agent[] = [
   {
     id: 'agent-1',
-    name: 'Victoria Sterling',
-    role: 'Senior Luxury Real Estate Advisor',
-    phone: '+1 (305) 892-4100',
-    email: 'victoria@luxehaven.com',
+    name: 'Saba Rao',
+    role: 'Proprietor & Principal Advisor',
+    phone: '+91 6366214574',
+    email: 'info@dreamdwellrealestates.in',
+    whatsappNumber: '916366214574',
     image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
-    experienceYears: 14,
-    activeListings: 12,
-    totalVolume: '$450M+',
-    specialization: 'Oceanfront Estates & Waterfront Mansions',
-    bio: 'With over 14 years specializing in ultra-luxury coastal real estate, Victoria delivers unmatched market intelligence, discretion, and negotiation excellence for high-net-worth clients worldwide.',
+    experienceYears: 15,
+    activeListings: 18,
+    totalVolume: '₹450 Cr+',
+    specialization: 'Luxury Gated Villas, Mansions & High-Growth Portfolios',
+    bio: 'Founder and Proprietor of Dream Dwell Real Estates. Over 15 years of trusted advisory experience assisting high-net-worth clients across Bangalore’s prime residential and commercial corridors.',
     rating: 4.98,
+    localitiesCovered: ['Whitefield', 'OMBR Layout', 'Indiranagar', 'Sadashivanagar'],
     socials: {
       linkedin: 'https://linkedin.com',
       instagram: 'https://instagram.com',
-      twitter: 'https://twitter.com',
     },
   },
   {
     id: 'agent-2',
-    name: 'Alexander Hayes',
-    role: 'Managing Director - Penthouse Division',
-    phone: '+1 (212) 555-0199',
-    email: 'alexander@luxehaven.com',
+    name: 'Rohan Sharma',
+    role: 'Senior Property Advisor - Residential',
+    phone: '+91 9845012345',
+    email: 'rohan@dreamdwellrealestates.in',
+    whatsappNumber: '916366214574',
     image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
-    experienceYears: 18,
-    activeListings: 8,
-    totalVolume: '$820M+',
-    specialization: 'High-Rise Penthouses & Historic Townhouses',
-    bio: 'Alexander is a recognized leader in Manhattan and East Coast penthouse transactions. His meticulous architectural domain knowledge and network of global buyers set industry standards.',
-    rating: 5.0,
+    experienceYears: 11,
+    activeListings: 12,
+    totalVolume: '₹280 Cr+',
+    specialization: 'Sky Penthouses, Luxury Apartments & Eco Farmlands',
+    bio: 'Dedicated residential specialist with expert knowledge of Vastu-compliant layouts, title deed verification, and high-rise penthouse acquisitions.',
+    rating: 4.95,
+    localitiesCovered: ['Indiranagar', 'Koramangala', 'Kanakapura Road', 'MG Road'],
     socials: {
       linkedin: 'https://linkedin.com',
       instagram: 'https://instagram.com',
@@ -58,36 +63,19 @@ export const AGENTS: Agent[] = [
   },
   {
     id: 'agent-3',
-    name: 'Elena Rostova',
-    role: 'Principal Broker - West Coast',
-    phone: '+1 (310) 998-3200',
-    email: 'elena@luxehaven.com',
+    name: 'Ananya Reddy',
+    role: 'Director - Commercial & Plotted Developments',
+    phone: '+91 9731088900',
+    email: 'ananya@dreamdwellrealestates.in',
+    whatsappNumber: '916366214574',
     image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80',
-    experienceYears: 12,
-    activeListings: 15,
-    totalVolume: '$610M+',
-    specialization: 'Bel Air, Beverly Hills & Malibu Architectural Villas',
-    bio: 'Specializing in contemporary California architecture, Elena connects visionary design properties with discerning international buyers seeking privacy and luxury.',
-    rating: 4.96,
-    socials: {
-      linkedin: 'https://linkedin.com',
-      instagram: 'https://instagram.com',
-      twitter: 'https://twitter.com',
-    },
-  },
-  {
-    id: 'agent-4',
-    name: 'Marcus Vance',
-    role: 'Commercial & Alpine Luxury Director',
-    phone: '+1 (303) 771-9200',
-    email: 'marcus@luxehaven.com',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
-    experienceYears: 10,
-    activeListings: 9,
-    totalVolume: '$320M+',
-    specialization: 'Alpine Ski Chalets & Resort Properties',
-    bio: 'Marcus represents luxury resort compounds across Aspen, Vail, and Lake Tahoe. Known for his keen investor insight and white-glove client advisory.',
-    rating: 4.92,
+    experienceYears: 9,
+    activeListings: 14,
+    totalVolume: '₹310 Cr+',
+    specialization: 'Grade-A Commercial Office Suites & BMRDA/RERA Plots',
+    bio: 'Specializing in tech park commercial floor plates, institutional leasing, and RERA-approved villa plot developments across Devanahalli and Outer Ring Road.',
+    rating: 4.94,
+    localitiesCovered: ['Outer Ring Road', 'Devanahalli', 'Bellandur', 'Yelahanka'],
     socials: {
       linkedin: 'https://linkedin.com',
       instagram: 'https://instagram.com',

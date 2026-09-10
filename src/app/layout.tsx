@@ -22,8 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${jakarta.variable} dark scroll-smooth`}>
-      <body className="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950">
+    <html lang="en" className={`${jakarta.variable} dark scroll-smooth`} suppressHydrationWarning>
+      <body
+        className="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950"
+        suppressHydrationWarning
+      >
         <FavoritesProvider>
           <Navbar />
           <main className="flex-1 pt-24">{children}</main>

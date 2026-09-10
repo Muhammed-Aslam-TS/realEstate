@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { X, Calendar, Clock, Video, UserCheck, CheckCircle2, Building2 } from 'lucide-react';
+import { X, Calendar, Clock, UserCheck, CheckCircle2, Building2, MessageSquare } from 'lucide-react';
 import { Property } from '@/data/properties';
 
 interface ScheduleModalProps {
@@ -12,11 +12,10 @@ interface ScheduleModalProps {
 
 export default function ScheduleModal({ property, isOpen, onClose }: ScheduleModalProps) {
   const [submitted, setSubmitted] = useState(false);
-  const [tourType, setTourType] = useState<'in-person' | 'video'>('in-person');
+  const [tourType, setTourType] = useState<'physical' | 'video'>('physical');
   const [date, setDate] = useState('');
-  const [time, setTime] = useState('10:00 AM');
+  const [time, setTime] = useState('11:00 AM');
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
   if (!isOpen) return null;
@@ -32,33 +31,33 @@ export default function ScheduleModal({ property, isOpen, onClose }: ScheduleMod
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#04120c]/85 backdrop-blur-md animate-fade-in">
+      <div className="relative w-full max-w-lg bg-[#092217] border border-[#059669]/40 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden text-slate-200 animate-scale-up">
         {/* Ambient Glow */}
-        <div className="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 blur-2xl rounded-full pointer-events-none" />
+        <div className="absolute top-0 right-0 w-48 h-48 bg-[#059669]/15 blur-2xl rounded-full pointer-events-none" />
 
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full bg-slate-800/80 hover:bg-slate-800 text-slate-400 hover:text-white transition-all"
+          className="absolute top-5 right-5 p-2 rounded-full bg-[#04160d] hover:bg-[#073623] text-slate-300 hover:text-white transition-all"
         >
           <X className="w-5 h-5" />
         </button>
 
         {submitted ? (
           <div className="text-center py-8 space-y-4">
-            <div className="w-16 h-16 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto text-emerald-400">
+            <div className="w-16 h-16 bg-[#059669]/20 border border-[#059669]/40 rounded-full flex items-center justify-center mx-auto text-[#10b981]">
               <CheckCircle2 className="w-10 h-10" />
             </div>
-            <h3 className="text-2xl font-bold text-white">Viewing Scheduled!</h3>
+            <h3 className="text-2xl font-bold text-white">Site Visit Scheduled!</h3>
             <p className="text-sm text-slate-300 max-w-sm mx-auto">
-              Thank you, <strong className="text-amber-400">{name}</strong>. Agent{' '}
-              <strong className="text-white">{property.agent.name}</strong> will confirm your{' '}
-              <span className="capitalize">{tourType}</span> viewing for {date} at {time}.
+              Thank you, <strong className="text-[#10b981]">{name}</strong>. Advisor{' '}
+              <strong className="text-white">{property.agent.name}</strong> will contact you on your number ({phone}) to confirm your{' '}
+              <span className="capitalize">{tourType}</span> site visit on {date} at {time}.
             </p>
             <button
               onClick={handleReset}
-              className="mt-4 px-6 py-2.5 rounded-full bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-all shadow-lg shadow-amber-500/20"
+              className="mt-4 px-6 py-2.5 rounded-full bg-[#059669] text-white font-bold text-sm hover:bg-[#10b981] transition-all shadow-lg shadow-[#059669]/30"
             >
               Done
             </button>
@@ -66,68 +65,68 @@ export default function ScheduleModal({ property, isOpen, onClose }: ScheduleMod
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-amber-400 flex items-center gap-1.5 mb-1">
-                <Building2 className="w-3.5 h-3.5" /> Schedule Private Tour
+              <span className="text-xs font-bold uppercase tracking-wider text-[#10b981] flex items-center gap-1.5 mb-1">
+                <Building2 className="w-3.5 h-3.5" /> Schedule Physical Site Visit
               </span>
               <h3 className="text-xl font-bold text-white line-clamp-1">{property.title}</h3>
-              <p className="text-xs text-slate-400 mt-0.5">{property.formattedPrice} • {property.location.city}, {property.location.state}</p>
+              <p className="text-xs text-slate-300 mt-0.5">{property.priceLakhsOrCrores} • {property.location.subLocality}, {property.location.city}</p>
             </div>
 
             {/* Tour Type selector */}
-            <div className="grid grid-cols-2 gap-3 p-1 rounded-2xl bg-slate-950 border border-slate-800">
+            <div className="grid grid-cols-2 gap-3 p-1 rounded-2xl bg-[#04160d] border border-[#059669]/30">
               <button
                 type="button"
-                onClick={() => setTourType('in-person')}
-                className={`py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all ${
-                  tourType === 'in-person'
-                    ? 'bg-amber-500 text-slate-950 shadow-md'
-                    : 'text-slate-400 hover:text-white'
+                onClick={() => setTourType('physical')}
+                className={`py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-all ${
+                  tourType === 'physical'
+                    ? 'bg-[#059669] text-white shadow-md'
+                    : 'text-slate-300 hover:text-white'
                 }`}
               >
-                <UserCheck className="w-4 h-4" /> In-Person Tour
+                <UserCheck className="w-4 h-4" /> Physical Site Check
               </button>
               <button
                 type="button"
                 onClick={() => setTourType('video')}
-                className={`py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all ${
+                className={`py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-all ${
                   tourType === 'video'
-                    ? 'bg-amber-500 text-slate-950 shadow-md'
-                    : 'text-slate-400 hover:text-white'
+                    ? 'bg-[#059669] text-white shadow-md'
+                    : 'text-slate-300 hover:text-white'
                 }`}
               >
-                <Video className="w-4 h-4" /> Video Call Tour
+                <MessageSquare className="w-4 h-4" /> Live Video Walkthrough
               </button>
             </div>
 
             {/* Date & Time */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1">
-                  <Calendar className="w-3.5 h-3.5 text-amber-400" /> Date
+                <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center gap-1">
+                  <Calendar className="w-3.5 h-3.5 text-[#10b981]" /> Preferred Date
                 </label>
                 <input
                   type="date"
                   required
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-amber-500"
+                  className="w-full bg-[#04160d] border border-[#059669]/40 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#10b981]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5 text-amber-400" /> Preferred Time
+                <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5 text-[#10b981]" /> Time Slot
                 </label>
                 <select
                   value={time}
                   onChange={(e) => setTime(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-amber-500"
+                  className="w-full bg-[#04160d] border border-[#059669]/40 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#10b981]"
                 >
-                  <option>09:00 AM</option>
-                  <option>10:30 AM</option>
-                  <option>01:00 PM</option>
-                  <option>03:30 PM</option>
-                  <option>05:00 PM</option>
+                  <option>10:00 AM</option>
+                  <option>11:30 AM</option>
+                  <option>02:00 PM</option>
+                  <option>04:00 PM</option>
+                  <option>05:30 PM</option>
                 </select>
               </div>
             </div>
@@ -141,34 +140,26 @@ export default function ScheduleModal({ property, isOpen, onClose }: ScheduleMod
                   placeholder="Full Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
+                  className="w-full bg-[#04160d] border border-[#059669]/40 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-[#10b981]"
                 />
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <input
-                  type="email"
-                  required
-                  placeholder="Email Address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
-                />
+              <div>
                 <input
                   type="tel"
                   required
-                  placeholder="Phone Number"
+                  placeholder="WhatsApp / Phone Number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
+                  className="w-full bg-[#04160d] border border-[#059669]/40 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-[#10b981]"
                 />
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full py-3 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-bold text-sm hover:brightness-110 shadow-lg shadow-amber-500/20 transition-all"
+              className="w-full py-3 rounded-2xl bg-[#059669] hover:bg-[#10b981] text-white font-bold text-sm shadow-lg shadow-[#059669]/30 transition-all"
             >
-              Confirm Tour Request
+              Confirm Site Visit Request
             </button>
           </form>
         )}
